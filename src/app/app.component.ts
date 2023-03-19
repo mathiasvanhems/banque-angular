@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { environment } from './../environments/environment';
 
 @Component({
@@ -7,7 +8,7 @@ import { environment } from './../environments/environment';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor() {
+  constructor(public router: Router) {
     console.log(environment.production); // Logs false for development environment
   }
   title = 'banque-front';

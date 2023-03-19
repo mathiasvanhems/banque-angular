@@ -7,16 +7,16 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['historique']">Historique |</a>
+          <a class="nav-link" [class]="router.url == '/historique' ? 'active' : 'inactive'" [routerLink]="['historique']">Historique |</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['operation']">Operation |</a>
+          <a class="nav-link" [class]="router.url == '/operation' ? 'active' : 'inactive'" [routerLink]="['operation']">Operation |</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['type']">Type Operation |</a>
+          <a class="nav-link" [class]="router.url == '/type' ? 'active' : 'inactive'" [routerLink]="['type']">Type Operation |</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['banque']">Compte |</a>
+          <a  class="nav-link" [class]="router.url == '/banque' ? 'active' : 'inactive'"  [routerLink]="['banque']">Compte |</a>
         </li> 
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

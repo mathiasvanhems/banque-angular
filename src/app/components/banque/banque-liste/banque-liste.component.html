@@ -11,23 +11,18 @@
                 <th colspan="1">Livret A</th>
                 <th colspan="1">Epargne</th>
                 <th colspan="1">Tickets Restaurant</th>
-                <th colspan="2">actions <a href="#"class="btn btn-primary btn-sm" style="display: inline-block">Create</a></th>
+                <th colspan="2">actions <a routerLink="/banqueDetail/0" class="btn btn-primary btn-sm" style="display: inline-block">Create</a></th>
             </tr>
         </thead>
         <tbody>
             <!-- {% for banque in banques %} -->
                 <tr *ngFor="let banque of banques">
-                    <td>{{ banque.compteCourant| number : '.0-2' }}€</td>
+                    <td>{{ banque.compteCourant| number : '.0-2'}}€</td>
                     <td>{{ banque.livretA| number : '.0-2' }}€</td>
                     <td>{{ banque.epargne| number : '.0-2' }}€</td>
                     <td>{{ banque.ticketRestaurant| number : '.0-2' }}€</td>
-                    <td><a href="#" class="btn btn-secondary btn-sm" style="display: inline-block">edit</a></td>
-                    <td>
-                        <form method="post" action="#" style="display: inline-block">
-                            <input type="hidden" name="_method" value="delete">
-                            <button class="btn btn-danger btn-sm">Delete</button> 
-                        </form>
-                    </td>
+                    <td><a routerLink="/banqueDetail/{{banque.id}}" class="btn btn-secondary btn-sm" style="display: inline-block">edit</a></td>
+                    <td><button type="button" class="btn btn-danger btn-sm" title="delete banque" (click)="delete(banque)" style="display: inline-block">Delete</button></td>
                 </tr>
             <!-- {% endfor %} -->
             <tr>

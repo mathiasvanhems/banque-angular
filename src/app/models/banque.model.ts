@@ -6,3 +6,5 @@ export interface Banque {
     epargne:number;
     ticketRestaurant:number;
 }
+
+let banque = {} as Banque;

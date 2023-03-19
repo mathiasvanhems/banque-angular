@@ -34,25 +34,27 @@ export class BanqueListeComponent implements OnInit {
           this.CalculResponse()
         }
       },
-    
-
     );
-    //console.log(this.banques);
     this.banques.forEach(banque => {
       console.log(banque.id);
     });
 
-
-    
     this.CalculResponse()
-    console.log(2);
 
   }
+
+
+  delete(banque: Banque): void {
+    this.banques = this.banques.filter(h => h !== banque);
+    this.banqueService.deleteBanque(banque.id).subscribe();
+  }
+
+
+
   CalculResponse() {
     console.log(this.CalculResponse)
     
     this.banques.forEach(banque => {
-      console.log(banque);
       this.total = this.total+banque.compteCourant+banque.epargne+banque.livretA+banque.ticketRestaurant;
       this.livretA=this.livretA+banque.livretA
     })

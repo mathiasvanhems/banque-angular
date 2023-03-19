@@ -1,4 +1,4 @@
-body {
+.body1 {
     background-color: lightgray;
 }
 
@@ -30,4 +30,16 @@ body {
 
 .test {
     background: #F5F5F5; 
+}
+
+.ng-valid[required], .ng-valid.required {
+
+    border-left: 5px solid green;
+    
+}
+    
+.ng-invalid:not(form) {
+    
+    border-left: 5px solid red;
+    
 }
