@@ -4,6 +4,8 @@ import { BanqueDetailComponent } from './components/banque/banque-detail/banque-
 import { BanqueListeComponent } from './components/banque/banque-liste/banque-liste.component';
 import { HistoriqueDetailComponent } from './components/historique/historique-detail/historique-detail.component';
 import { HistoriqueListeComponent } from './components/historique/historique-liste/historique-liste.component';
+import { TypeOperationDetailComponent } from './components/historique/type-operation-detail/type-operation-detail.component';
+import { TypeOperationListeComponent } from './components/historique/type-operation-liste/type-operation-liste.component';
 
 
 const routes: Routes = [
@@ -11,8 +13,10 @@ const routes: Routes = [
   { path: 'banque', component: BanqueListeComponent },
   { path: 'banqueDetail/:id', component: BanqueDetailComponent },
   { path: 'operation', component: BanqueListeComponent },
-  { path: 'type', component: BanqueListeComponent },
-  { path: 'historique', component: HistoriqueListeComponent },
+  { path: 'type', component: TypeOperationListeComponent },
+  { path: 'typeDetail/:id', component: TypeOperationDetailComponent },
+  { path: 'historique', component: HistoriqueListeComponent,data: { shouldReuse: false } },
+  { path: 'historique/:annee', component: HistoriqueListeComponent, data: { shouldReuse: false }},
   { path: 'historiqueDetail/:id', component: HistoriqueDetailComponent },
   { path: 'home', redirectTo: '/', pathMatch: 'full' },
 ];

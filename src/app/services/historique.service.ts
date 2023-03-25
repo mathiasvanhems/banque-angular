@@ -19,7 +19,10 @@ export class HistoriqueService {
 
   getAllHistorique():Observable<Historique[]>{
     return this.http.get<Historique[]>(this.baseApiUrl)
+  }
 
+  getHistoriqueByAnnee(annee:string):Observable<Historique[]>{
+    return this.http.get<Historique[]>(this.baseApiUrl+"/get/"+annee)
   }
 
   /** GET Historique by id. Will 404 if id not found */

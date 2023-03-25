@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { registerLocaleData,DatePipe } from '@angular/common';
 
+
 import localeFr from '@angular/common/locales/fr';
 
 
@@ -14,6 +15,12 @@ import { BanqueDetailComponent } from './components/banque/banque-detail/banque-
 import { HistoriqueDetailComponent } from './components/historique/historique-detail/historique-detail.component';
 import { HistoriqueListeComponent } from './components/historique/historique-liste/historique-liste.component';
 import { NgChartsModule } from 'ng2-charts';
+import { RouteReuseStrategy } from '@angular/router';
+import { AppRouteReuseStrategy } from './AppRouteReuseStrategy';
+import { TypeOperationListeComponent } from './components/historique/type-operation-liste/type-operation-liste.component';
+import { TypeOperationDetailComponent } from './components/historique/type-operation-detail/type-operation-detail.component';
+//import { RouteReuseStrategy } from '@angular/router';
+//import { AppRouteReuseStrategy } from './AppRouteReuseStrategy';
 
 
 
@@ -26,6 +33,8 @@ registerLocaleData(localeFr);
     BanqueDetailComponent,
     HistoriqueListeComponent,
     HistoriqueDetailComponent,
+    TypeOperationListeComponent,
+    TypeOperationDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +43,7 @@ registerLocaleData(localeFr);
     FormsModule,
     NgChartsModule,
   ],
-  providers: [{provide: LOCALE_ID, useValue: 'fr-FR'},DatePipe],
+  providers: [{provide: LOCALE_ID, useValue: 'fr-FR'},DatePipe,{ provide: RouteReuseStrategy, useClass: AppRouteReuseStrategy}],//
   bootstrap: [AppComponent]
 })
 export class AppModule { }
