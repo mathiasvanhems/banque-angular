@@ -17,10 +17,14 @@ import { HistoriqueListeComponent } from './components/historique/historique-lis
 import { NgChartsModule } from 'ng2-charts';
 import { RouteReuseStrategy } from '@angular/router';
 import { AppRouteReuseStrategy } from './AppRouteReuseStrategy';
-import { TypeOperationListeComponent } from './components/historique/type-operation-liste/type-operation-liste.component';
-import { TypeOperationDetailComponent } from './components/historique/type-operation-detail/type-operation-detail.component';
-//import { RouteReuseStrategy } from '@angular/router';
-//import { AppRouteReuseStrategy } from './AppRouteReuseStrategy';
+import { TypeOperationListeComponent } from './components/type-operation/type-operation-liste/type-operation-liste.component';
+import { TypeOperationDetailComponent } from './components/type-operation/type-operation-detail/type-operation-detail.component';
+import { OperationListeComponent } from './components/operation/operation-liste/operation-liste.component';
+import { OperationDetailComponent } from './components/operation/operation-detail/operation-detail.component';
+import { FormatNumberPipe } from './pipe/format-number.pipe';
+import { FormatStringPipe } from './pipe/format-string.pipe';
+
+
 
 
 
@@ -35,6 +39,10 @@ registerLocaleData(localeFr);
     HistoriqueDetailComponent,
     TypeOperationListeComponent,
     TypeOperationDetailComponent,
+    OperationListeComponent,
+    OperationDetailComponent,
+    FormatNumberPipe,
+    FormatStringPipe,
   ],
   imports: [
     BrowserModule,
@@ -43,7 +51,12 @@ registerLocaleData(localeFr);
     FormsModule,
     NgChartsModule,
   ],
-  providers: [{provide: LOCALE_ID, useValue: 'fr-FR'},DatePipe,{ provide: RouteReuseStrategy, useClass: AppRouteReuseStrategy}],//
+  providers: [{provide: LOCALE_ID, useValue: 'fr-FR'},
+  DatePipe,
+  FormatNumberPipe,
+  FormatStringPipe,
+  { provide: RouteReuseStrategy, useClass: AppRouteReuseStrategy}],
+  //
   bootstrap: [AppComponent]
 })
 export class AppModule { }

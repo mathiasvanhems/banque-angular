@@ -6,7 +6,7 @@ export interface Operation {
     montant:number;
 	detail:string;
 	dateOperation:Date;
-	type:TypeOperation[];
+	type:TypeOperation;
 }
 
 let Operation = {} as Operation;

@@ -21,12 +21,10 @@ export class BanqueListeComponent implements OnInit {
   constructor(private banqueService: BanqueService){}
   
   ngOnInit(): void {
-    console.log(0);
     this.banqueService.getAllBanque()
       .subscribe({
         next: (banques$) => {
           this.banques=banques$;
-          console.log(66);
         },
         error:(response) => {console.log(response);},
         complete:() => {
@@ -47,13 +45,15 @@ export class BanqueListeComponent implements OnInit {
   delete(banque: Banque): void {
     this.banques = this.banques.filter(h => h !== banque);
     this.banqueService.deleteBanque(banque.id).subscribe();
+    this.CalculResponse()
   }
 
 
 
   CalculResponse() {
-    console.log(this.CalculResponse)
-    
+    this.total=0;
+    this.livretA=0;
+    this.rentLivretA=0;
     this.banques.forEach(banque => {
       this.total = this.total+banque.compteCourant+banque.epargne+banque.livretA+banque.ticketRestaurant;
       this.livretA=this.livretA+banque.livretA

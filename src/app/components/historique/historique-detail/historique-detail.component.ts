@@ -4,6 +4,7 @@ import { Historique } from 'src/app/models/historique.model';
 import { HistoriqueService } from 'src/app/services/historique.service';
 import { DatePipe, formatDate, Location } from '@angular/common';
 import {FormBuilder, FormControl, Validators} from '@angular/forms';
+import { FormatNumberPipe } from 'src/app/pipe/format-number.pipe';
 
 @Component({
   selector: 'app-historique-detail',
@@ -12,7 +13,7 @@ import {FormBuilder, FormControl, Validators} from '@angular/forms';
 })
 export class HistoriqueDetailComponent implements OnInit {
   historique: Historique;
-  constructor(private route: ActivatedRoute,private historiqueService: HistoriqueService,private location: Location,private datePipe: DatePipe){
+  constructor(private route: ActivatedRoute,private historiqueService: HistoriqueService,private location: Location,private datePipe: DatePipe,private formatNumberPipe: FormatNumberPipe){
     //formatDate(new Date(), 'dd/MM/yyyy', 'fr-FR');
     this.historique={} as Historique;
   }
@@ -56,8 +57,13 @@ export class HistoriqueDetailComponent implements OnInit {
     
     console.log(this.historique);
     if (this.historique) {
-      this.historiqueService.updateHistorique(this.historique)
+      this.historiqueService.updateHistorique(this.format(this.historique))
         .subscribe(() => this.goBack());
     }
+  }
+
+  format(historique: Historique){
+    historique.montant=this.formatNumberPipe.transform(historique.montant)
+    return historique;
   }
 }

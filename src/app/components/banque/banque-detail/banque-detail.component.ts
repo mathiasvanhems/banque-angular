@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Banque } from 'src/app/models/banque.model';
 import { BanqueService } from 'src/app/services/banque.service';
 import { Location } from '@angular/common';
+import { FormatNumberPipe } from 'src/app/pipe/format-number.pipe';
 
 @Component({
   selector: 'app-banque-detail',
@@ -13,7 +14,7 @@ export class BanqueDetailComponent implements OnInit {
 
 
   banque: Banque | undefined;
-  constructor(private route: ActivatedRoute,private banqueService: BanqueService,private location: Location){}
+  constructor(private route: ActivatedRoute,private banqueService: BanqueService,private location: Location,private formatNumberPipe: FormatNumberPipe){}
 
   ngOnInit(): void {
     console.log('start')
@@ -43,8 +44,18 @@ export class BanqueDetailComponent implements OnInit {
 
   save(): void {
     if (this.banque) {
-      this.banqueService.updateBanque(this.banque)
+      console.log(this.banque)
+      this.banqueService.updateBanque(this.format(this.banque))
         .subscribe(() => this.goBack());
     }
+  }
+
+  format(banque: Banque){
+    console.log(banque)
+    banque.compteCourant=this.formatNumberPipe.transform(banque.compteCourant)
+    if(banque.livretA){banque.livretA=this.formatNumberPipe.transform(banque.livretA)}
+    if(banque.epargne){banque.epargne=this.formatNumberPipe.transform(banque.epargne)}
+    if(banque.ticketRestaurant){banque.ticketRestaurant=this.formatNumberPipe.transform(banque.ticketRestaurant)}
+    return banque;
   }
 }
