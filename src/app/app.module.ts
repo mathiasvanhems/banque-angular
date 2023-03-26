@@ -1,7 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule, LOCALE_ID  } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { registerLocaleData,DatePipe } from '@angular/common';
 
 
@@ -50,6 +50,8 @@ registerLocaleData(localeFr);
     HttpClientModule,
     FormsModule,
     NgChartsModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [{provide: LOCALE_ID, useValue: 'fr-FR'},
   DatePipe,

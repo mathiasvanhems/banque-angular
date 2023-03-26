@@ -5,6 +5,7 @@ import { TypeOperationService } from 'src/app/services/type-operation.service';
 import { Location } from '@angular/common';
 import { FormatStringPipe } from 'src/app/pipe/format-string.pipe';
 import { FormatNumberPipe } from 'src/app/pipe/format-number.pipe';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-type-operation-detail',
@@ -19,7 +20,19 @@ export class TypeOperationDetailComponent implements OnInit {
     { value: 'Mensuel' },
   ];
   typeOperation: TypeOperation | undefined;
-  constructor(private route: ActivatedRoute, private typeOperationService: TypeOperationService, private location: Location,private formatNumberPipe: FormatNumberPipe,private formatStringPipe: FormatStringPipe) { }
+  myForm: any;
+  constructor(private route: ActivatedRoute, 
+      private typeOperationService: TypeOperationService, 
+      private location: Location,
+      private formatNumberPipe: FormatNumberPipe,
+      private formatStringPipe: FormatStringPipe,
+      private fb: FormBuilder) { 
+        this.myForm = fb.group({
+          // Adding the "myNum" input to our FormGroup along with its min-max Validators.
+          'myNum': ['', [Validators.min(5), Validators.max(10)]] 
+        })
+
+      }
 
   ngOnInit(): void {
     console.log('start')

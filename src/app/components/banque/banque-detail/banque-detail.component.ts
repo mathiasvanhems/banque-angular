@@ -4,6 +4,7 @@ import { Banque } from 'src/app/models/banque.model';
 import { BanqueService } from 'src/app/services/banque.service';
 import { Location } from '@angular/common';
 import { FormatNumberPipe } from 'src/app/pipe/format-number.pipe';
+import { FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';  
 
 @Component({
   selector: 'app-banque-detail',
@@ -11,10 +12,24 @@ import { FormatNumberPipe } from 'src/app/pipe/format-number.pipe';
   styleUrls: ['./banque-detail.component.css']
 })
 export class BanqueDetailComponent implements OnInit {
+  [x: string]: any;
 
 
   banque: Banque | undefined;
-  constructor(private route: ActivatedRoute,private banqueService: BanqueService,private location: Location,private formatNumberPipe: FormatNumberPipe){}
+  public formControle: FormGroup;
+  constructor(private route: ActivatedRoute,private banqueService: BanqueService,private location: Location,private formatNumberPipe: FormatNumberPipe,private fb: FormBuilder){
+    this.formControle = fb.group({
+      tel: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
+    })
+  }
+
+  get formValid(){
+    return this.formControle.controls;
+  }
+   
+  onSubmit(){
+    console.log(this.formControle.value);
+  }
 
   ngOnInit(): void {
     console.log('start')

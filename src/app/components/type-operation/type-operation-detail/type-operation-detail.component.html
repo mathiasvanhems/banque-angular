@@ -8,7 +8,6 @@
         <div class="mb-3">
 
             <label for="typeOperation_recurrence" class="form-label">Recurrence: </label>
-
             <select [(ngModel)]="recurrenceSelected" (ngModelChange)="onRecurrenceSelected($event)"
                 name="typeOperation[recurrence]" class="form-select">
                 <option *ngFor="let recurrence of recurrences" [value]="recurrence.value">
