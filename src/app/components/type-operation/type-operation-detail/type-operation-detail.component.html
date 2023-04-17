@@ -1,0 +1,33 @@
+<div class="example-wrapper">
+    <div *ngIf="typeOperation" id="typeOperation">
+        <div class="mb-3">
+            <label for="typeOperation_libelle" class="form-label required">Libelle: </label>
+            <input type="text" id="typeOperation_libelle" name="typeOperation[libelle]" required="required"
+                class="form-control .ng-valid" [(ngModel)]="typeOperation.libelle" placeholder="NA" />
+        </div>
+        <div class="mb-3">
+
+            <label for="typeOperation_recurrence" class="form-label">Recurrence: </label>
+            <select [(ngModel)]="recurrenceSelected" (ngModelChange)="onRecurrenceSelected($event)"
+                name="typeOperation[recurrence]" class="form-select">
+                <option *ngFor="let recurrence of recurrences" [value]="recurrence.value">
+                    {{recurrence.value}}
+                </option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <input type="checkbox" id="typeOperation_sortie" name="typeOperation[sortie]" class="form-check-input"
+                [(ngModel)]="typeOperation.sortie">
+            <label for="typeOperation_sortie" class="form-check-label">&nbsp;Sortie </label>
+
+        </div>
+
+        <br />
+        <div class="mb-3">
+            <button type="submit" id="typeOperation_save" name="typeOperation[save]" class="btn-primary btn"
+                (click)="save()">save</button>
+        </div>
+    </div>
+    <p><button type="button" (click)="goBack()" class="btn btn-secondary btn-sm" style="display: inline-block">🔙
+            Retour</button></p>
+</div>

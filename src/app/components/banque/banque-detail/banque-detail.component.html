@@ -1,0 +1,50 @@
+<div class="example-wrapper">
+    <div *ngIf="banque" id="banque">
+
+
+        <form [formGroup]="formControle" (ngSubmit)="onSubmit()" novalidate>
+            <div class="form-group">
+                <label>Mobile number: </label>
+                <input type="text" formControlName="tel" class="form-control mb-2">
+                <div *ngIf="formValid['tel'].touched && formValid['tel'].invalid" class="alert alert-danger">
+                    <div *ngIf="formValid['tel'].errors?.['required']">Please enter mobile number</div>
+                    <div *ngIf="formValid['tel'].errors?.['pattern']">Mobile number is not 10 digit</div>
+                </div>
+            </div>
+            <div class="d-grid mt-3">
+                <button class="btn btn-dark" [disabled]="!formControle.valid" type="submit">Store</button>
+            </div>
+        </form>
+
+
+
+
+        <div class="mb-3">
+            <label for="banque_compteCourant" class="form-label required">Compte Courant: </label>
+            <input type="text" id="banque_compteCourant" name="banque[compteCourant]" required="required"
+                class="form-control .ng-valid" [(ngModel)]="banque.compteCourant" placeholder="0" />
+        </div>
+        <div class="mb-3">
+            <label for="banque_livretA" class="form-label">Livret A: </label>
+            <input type="text" id="banque_livretA" name="banque[livretA]" class="form-control"
+                [(ngModel)]="banque.livretA" placeholder=0>
+        </div>
+        <div class="mb-3">
+            <label for="banque_epargne" class="form-label">Epargne: </label>
+            <input type="text" id="banque_epargne" name="banque[epargne]" class="form-control"
+                [(ngModel)]="banque.epargne" placeholder=0>
+        </div>
+        <div class="mb-3">
+            <label for="banque_epargne" class="form-label">Ticket Restaurant: </label>
+            <input type="text" id="banque_ticketRestaurant" name="banque[ticketRestaurant]" class="form-control"
+                [(ngModel)]="banque.ticketRestaurant" placeholder=0>
+        </div>
+        <br />
+        <div class="mb-3">
+            <button type="submit" id="banque_save" name="banque[save]" class="btn-primary btn"
+                (click)="save()">save</button>
+        </div>
+    </div>
+    <p><button type="button" (click)="goBack()" class="btn btn-secondary btn-sm" style="display: inline-block">🔙
+            Retour</button></p>
+</div>

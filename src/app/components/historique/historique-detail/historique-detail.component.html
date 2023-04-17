@@ -1,0 +1,31 @@
+<div class="example-wrapper">
+    <div *ngIf="historique" id="historique">
+        <div class="mb-3">
+            <label for="historique_montant" class="form-label required">Montant: </label>
+            <input type="text" id="historique_compteCourant" name="historique[montant]" required="required" class="form-control .ng-valid" [(ngModel)]="historique.montant" placeholder="0" /> 
+        </div>
+        <div class="mb-3">
+            <label for="historique_periode" class="form-label">Date: </label>
+            <input type="date" ngbDatepicker id="historique_periode" name="historique[periode]" required="required" class="form-control .ng-valid" [ngModel]="historique.periode|date: 'yyyy-MM-dd'" (ngModelChange)="historique.periode=$event" >
+        </div>
+        <br />
+        <div class="mb-3">
+            <button type="submit" id="historique_save" name="historique[save]" class="btn-primary btn" (click)="save()">save</button>
+        </div>
+    </div>
+    <p><button type="button" (click)="goBack()" class="btn btn-secondary btn-sm" style="display: inline-block">🔙 Retour</button></p>
+
+</div>
+<script>
+    $(document).ready(function(){
+      var date_input=$('historique[periode]'); //our date input has the name "date"
+      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+      var options={
+        format: 'dd/mm/yyyy',
+        container: container,
+        todayHighlight: true,
+        autoclose: true,
+      };
+      date_input.datepicker(options);
+    })
+</script>

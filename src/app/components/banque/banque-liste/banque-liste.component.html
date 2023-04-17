@@ -1,0 +1,45 @@
+<div class="example-wrapper">
+    <h1>Banque</h1>
+    <br />
+    <table class='t1'>
+        <thead>
+            <tr>
+                <th colspan="6">Liste des données</th>
+            </tr>
+            <tr>
+                <th colspan="1">CCP</th>
+                <th colspan="1">Livret A</th>
+                <th colspan="1">Epargne</th>
+                <th colspan="1">Tickets Restaurant</th>
+                <th colspan="2">actions <a routerLink="/banqueDetail/0" class="btn btn-primary btn-sm" style="display: inline-block">Create</a></th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- {% for banque in banques %} -->
+                <tr *ngFor="let banque of banques">
+                    <td>{{ banque.compteCourant| number : '.0-2'}}€</td>
+                    <td>{{ banque.livretA| number : '.0-2' }}€</td>
+                    <td>{{ banque.epargne| number : '.0-2' }}€</td>
+                    <td>{{ banque.ticketRestaurant| number : '.0-2' }}€</td>
+                    <td><a routerLink="/banqueDetail/{{banque.id}}" class="btn btn-secondary btn-sm" style="display: inline-block">edit</a></td>
+                    <td><button type="button" class="btn btn-danger btn-sm" title="delete banque" (click)="delete(banque)" style="display: inline-block">Delete</button></td>
+                </tr>
+            <!-- {% endfor %} -->
+            <tr>
+                    <td>Total</td>
+                    <td>{{total| number : '.0-2'}}€</td>
+                    <td>Rent Livret A taux de {{taux}}%</td>
+                    <td>{{rentLivretA| number : '.0-2'}}€</td>
+                    <td></td>
+                </tr>
+        </tbody>
+    </table>
+
+    <!-- {{ render_chart(chart) }}
+
+    {# You can pass HTML attributes as a second argument to add them on the <canvas> tag #}
+    {# {{ render_chart(chart, {'class': 'my-chart'}) }}#}-->
+
+
+
+</div>

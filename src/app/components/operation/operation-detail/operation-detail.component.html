@@ -1,0 +1,52 @@
+<div class="example-wrapper">
+    <div *ngIf="operation" id="operation">
+        <div class="mb-3">
+            <label for="operation_montant" class="form-label required">Montant: </label>
+            <input type="text" id="operation_montant" name="operation[montant]" required="required"
+                class="form-control .ng-valid" [(ngModel)]="operation.montant" placeholder="0" />
+        </div>
+        <div class="mb-3">
+            <label for="operation_detail" class="form-label required">Detail: </label>
+            <input type="text" id="operation_detail" name="operation[detail]" class="form-control"
+                [(ngModel)]="operation.detail" placeholder="" />
+        </div>
+        <div class="mb-3">
+            <label for="operation_periode" class="form-label">Date: </label>
+            <input type="date" ngbDatepicker id="operation_periode" name="operation[periode]" required="required"
+                class="form-control .ng-valid" [ngModel]="operation.dateOperation|date: 'yyyy-MM-dd'"
+                (ngModelChange)="operation.dateOperation=$event">
+        </div>
+        <label for="operation_typeOperation" class="form-label">typeOperation: </label>
+
+        <select [(ngModel)]="typeOperationSelected" (ngModelChange)="onTypeOperationSelected($event)"
+            name="typeOperation[typeOperation]" class="form-select" placeholder="NA">
+            <option *ngFor="let typeOperationChoix of typeOperations" [value]="typeOperationChoix.id">
+                {{typeOperationChoix.libelle}}
+            </option>
+        </select>
+        <br />
+        <div class="mb-3">
+            <div *ngIf="typeOperationSelected!=0; then thenBlock else elseBlock"></div>
+            <ng-template #thenBlock><button type="submit" id="operation_save" name="operation[save]"
+                    class="btn-primary btn" (click)="save()">save</button></ng-template>
+            <ng-template #elseBlock><button type="submit" id="operation_save" name="operation[save]"
+                    class="btn-primary btn" disabled>save</button></ng-template>
+
+        </div>
+    </div>
+    <p><button type="button" (click)="goBack()" class="btn btn-secondary btn-sm" style="display: inline-block">🔙
+            Retour</button></p>
+</div>
+<script>
+    $(document).ready(function () {
+        var date_input = $('operation[dateOperation]'); //our date input has the name "date"
+        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+        var options = {
+            format: 'dd/mm/yyyy',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+        };
+        date_input.datepicker(options);
+    })
+</script>
